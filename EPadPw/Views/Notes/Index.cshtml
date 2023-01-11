@@ -1,0 +1,80 @@
+﻿@using EPadPw.Classes
+@model List<Notepad>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutNote.cshtml";
+}
+
+<section class="content-header">
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h4 class="m-0 text-dark">Notepad(s)</h4>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Your Notes</h3>
+                    </div>
+                    <div class="card-footer">
+                        @using (Html.BeginForm("Index", "Notes",
+                            FormMethod.Post, new { autocomplete = "off" }))
+                        {
+                            <div class="form-group row">
+                                <label class="col-sm-1 col-form-label">Subject</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="Subject" required placeholder="Subject name" value="">
+                                </div>
+                                <div class="col-sm-6">
+                                    <button type="submit" class="btn btn-outline-success">Add New Entry</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Subject</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (Notepad notepad in Model)
+                                        {
+                                            <tr>
+                                                <td style="width:20%">
+                                                    <a class="btn btn-primary" title="Edit Again"
+                                                       href="@Url.Action("Edit", "Note", new { id = notepad.RowKey })">
+                                                        <i class="far fa-edit"></i>
+                                                    </a>
+                                                    <a class="btn btn-warning" target="_blank" href="@Url.Action("Pad", "Note", new { id = notepad.RowKey })">
+                                                        <i class="far fa-clipboard"></i>
+                                                        View
+                                                    </a>
+                                                    <a class="btn btn-outline-danger" title="Delete"
+                                                       href="@Url.Action("Delete", "Notes", new { id = notepad.RowKey })">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </a>
+                                                </td>
+                                                <td>@notepad.Subject</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,152 @@
+﻿@using EPadPw.Classes
+@model Notepad
+
+@{
+    ViewBag.Title = Model != null ? Model.Subject : "";
+    Layout = "~/Views/Shared/_LayoutNote.cshtml";
+}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-12 col-md-10">
+            <div class="card">
+                <div class="card-header bg-warning">
+                    Note View
+                </div>
+                @if (Model != null)
+                {
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div data-note="header" class="">
+                                    <dl>
+                                        <dt>Subject</dt>
+                                        <dd>@Model.Subject</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div data-note="header" class="">
+                                    <dl>
+                                        <dt>Tutor</dt>
+                                        <dd>@Model._User.FullName</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="col-md-12 d-none">
+                                <span class="float-right">
+                                    <a href="javascript:void(0);" class="card-link"
+                                       data-keyboard="false" data-backdrop="static"
+                                       data-toggle="modal" data-target="#modal-sm">
+                                        <small class="text-primary">Request for edit</small>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dl data-note="files">
+                                    @foreach (NoteFile noteFile in Model._Files)
+                                    {
+                                        <dt>
+                                            <a href="@noteFile.FilePath" target="_blank" class="card-link">@noteFile.FileName</a>
+                                        </dt>
+                                        <dd>@noteFile.FileDetails</dd>
+                                    }
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12" >
+								<textarea data-note="body" style="font-family: 'Consolas';height: 100vh; background-color: #ffffff;border: none;" disabled class="textarea form-control">@Html.Raw(Model.Note)</textarea>
+							</div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="modal-sm">
+                        @using (Html.BeginForm("Request", "Note", new { id = Model.RowKey },
+                        FormMethod.Post, new { autocomplete = "off" }))
+                        {
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <!--<div class="modal-header">
+                                        <span>Edit for request</span>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>-->
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label>Email address</label>
+                                                    <input type="email" class="form-control form-control-sm" name="Email" placeholder="Enter email">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <blockquote>
+                                                    <small><cite title="Source Title">Password will be sent after approval to your email address to edit this Note</cite></small>
+                                                </blockquote>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <a href="javascript:void(0);" class="card-link" data-dismiss="modal">Close</a>
+                                        <button type="submit" class="btn btn-sm btn-success">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-danger">
+                                    <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                                    No Note found!!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        @Html.Partial("_PartialNoteAd")
+    </div>
+</div>
+@section BodyScript{
+    @if (Model != null)
+    {
+        <script type="text/javascript">
+            setInterval(function () { getData(); }, 2000);
+                function getData() {
+                    var timeStamp = Math.floor(Date.now() / 1000);
+                    fetch('@(Model != null ? Model.NotePath : "")' + '?v=' + timeStamp)
+                        .then(response => response.text())
+                        .then(data => {
+                            var OlderHtml = escape($('[data-note="body"]').val());
+                            if (OlderHtml !== data) {
+                                $('[data-note="body"]').val(unescape(data));
+                            }
+                        });
+
+
+                    fetch('@(Model != null ? Model.FilesPath : "")' + '?v=' + timeStamp)
+                        .then(response => response.text())
+                        .then(data => {
+                            var Jsonarr = JSON.parse(data);
+                            var htmld = '';
+                            for (i = 0; i < Jsonarr.length; i++) {
+                                htmld += '<dt><a href="' + Jsonarr[i].FilePath + '" target="_blank" class="card-link">' + Jsonarr[i].FileName + '</a>'
+                                    + '  </dt>'
+                                    + '  <dd>' + Jsonarr[i].FileDetails + '</dd>';
+                            }
+                            $('[data-note="files"]').html(htmld);
+                        });
+                }
+        </script>
+    }
+}

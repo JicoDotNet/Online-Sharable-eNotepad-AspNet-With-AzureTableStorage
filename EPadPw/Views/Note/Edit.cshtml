@@ -1,0 +1,204 @@
+﻿@using EPadPw.Classes
+@model Notepad
+@{
+    ViewBag.Title = "Entry";
+    Layout = "~/Views/Shared/_LayoutNote.cshtml";
+    bool FileUploadEligable = false;
+}
+
+@section HeadCss{
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+}
+<section class="content-header">
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Notepad</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Note : @Model.RowKey</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div data-note="header" class="callout callout-warning">
+                                    <h5>You can display your note!</h5>
+                                    <span class="float-right d-none">
+                                        <a href="@Url.Action("Requested", "Notepad", new { id = Model.RowKey })" class="card-link">
+                                            <span class="text-primary">Requested for edit</span>
+                                        </a>
+                                    </span>
+                                    <p class="mb-0">
+                                        Subject: @Model.Subject,
+                                        Click Here :
+                                        <a target="_blank" href="@Url.Action("Pad", "Note", new { id = Model.RowKey })"
+                                           class="card-link">@Model.RowKey<i class="fas fa-external-link-alt pl-2"></i></a>
+                                    </p>
+                                    <p>
+                                        Note Code: @Model.RowKey<i class="far fa-clone pl-2"></i>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 d-none" data-alert>
+                                <div class="alert alert-danger">
+                                    <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                                    Maximum length of text: <b>10,00,000</b> Characters
+                                    <br />You entired: <i data-alert="txtCount"></i> Characters.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <textarea required name="Note" class="textarea form-control" style="height:100vh;font-family: 'Consolas';" spellcheck="false">@Model.Note</textarea>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    @if (Model != null && Model._Files != null)
+                                    {
+                                        if (Model._Files.Count < 22)
+                                        {
+                                            FileUploadEligable = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        FileUploadEligable = true;
+                                    }
+                                    @if (FileUploadEligable)
+                                    {
+                                        using (Html.BeginForm("File", "Note",
+                                            FormMethod.Post, new { autocomplete = "off", enctype = "multipart/form-data" }))
+                                        {
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="exampleInputFile">Attach file (max: 22 files)</label>
+                                                    <input type="text" maxlength="32" name="FileDetails" required class="form-control"
+                                                           placeholder="File Details (32 char)" />
+													<input type="file" required name="FilePath" class="form-control" />
+                                                    <input type="hidden" name="PartitionKey" value="@Model.PartitionKey" />
+                                                    <input type="hidden" name="RowKey" value="@Model.RowKey" />
+                                                    <button type="submit" class="btn btn-success float-right">Upload</button>
+                                                    <p class="help-block">Max each file 3.99MB</p>
+                                                </div>
+                                                <hr class="mb-3 mt-3" />
+                                            </div>
+                                        }
+                                    }
+                                    <div class="col-12">
+                                        <dl>
+                                            @if (Model != null && Model._Files != null)
+                                            {
+                                                foreach (NoteFile noteFile in Model._Files)
+                                                {
+                                                    <dt>
+                                                        <a href="@noteFile.FilePath" target="_blank" class="card-link">@noteFile.FileName</a>
+                                                        <a class="card-link text-danger float-right" title="Delete"
+                                                           href="@Url.Action("DeleteFile", "Note", new { PartitionKey = Model.PartitionKey, RowKey = Model.RowKey, path = noteFile.FilePath })">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </a>
+                                                    </dt>
+                                                    <dd>@noteFile.FileDetails</dd>
+                                                }
+                                            }
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section BodyScript{
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            // Summernote
+            //$('.textarea').summernote({
+            //    placeholder: 'Hello!! Add your note here.',
+            //    height: 1000,
+			//	fontNames: ['Consolas'],
+            //    toolbar: [
+            //        // [groupName, [list of button]]
+            //        // ['style', ['bold', 'italic', 'underline', 'clear']],
+            //        // ['font', ['strikethrough', 'superscript', 'subscript']],
+			//		['fontname', ['fontname']],
+            //        ['fontsize', ['fontsize']],
+            //        // ['color', ['forecolor']],
+            //        // ['para', ['height']],
+			//		['height', ['height']],
+            //        ['view', ['fullscreen', 'codeview']]
+            //    ],
+			//	lineHeights: ['0.5', '0.6', '0.8', '1.0'],
+			//	//fontSizes: ['8', '9', '10', '11', '12'],
+			//	fontSize: 12,
+			//	lineHeight: '1.0',
+			//	fontname: 'Consolas'
+            //});
+			//$('.textarea').summernote('fontName', 'Consolas');
+			//$('.textarea').summernote('lineHeight', '0.6');
+			//$('.textarea').summernote('focus');
+        });
+        var Note = '';
+        setInterval(function () { setData(); }, 3000);
+        function setData() {
+            if (Note != undefined && escape($('.textarea').val()) != '' && Note != escape($('.textarea').val())) {
+                if ($('.textarea').val().length > 1000000) {
+                    $('[data-alert]').removeClass('d-none');
+                    $('[data-alert="txtCount"]').text($('.textarea').val().length);
+                    return;
+                }
+                $('[data-alert]').addClass('d-none');
+                Note = escape($('.textarea').val());
+
+                var data ={
+                    "Note": escape($('.textarea').val()),
+                    "PartitionKey": "@Model.PartitionKey",
+                    "RowKey": "@Model.RowKey"
+                };
+                $('[data-note="header"]').removeClass('callout-warning');
+                $('[data-note="header"]').removeClass('callout-success');
+                $('[data-note="header"]').addClass('callout-danger');
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Edit", "Note")",
+                    data: JSON.stringify(data),
+                    contentType: "application/json",
+                    dataType: 'json',
+                    success: function (data) {
+                        $('[data-note="header"]').removeClass('callout-danger');
+                        if (data) {
+                            $('[data-note="header"]').addClass('callout-success');
+                        }
+                        else {
+                            $('[data-note="header"]').addClass('callout-warning');
+                        }
+                    },
+                    failure: function (response) {
+                        console.log(response.responseText);
+                    },
+                    error: function (response) {
+                        console.log(response.responseText);
+                    }
+                });
+            }
+        }
+    </script>
+}

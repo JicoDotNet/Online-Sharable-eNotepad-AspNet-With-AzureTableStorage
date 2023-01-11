@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<header class="header-main header-light fixed-top">
+    <nav class="navbar navbar-expand navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="~/static/img/logo.png" title="" alt="" style="width: 160px;">
+            </a>
+            <div class="collapse navbar-collapse pt-0">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Account")" class="nav-link">Login</a>
+                    </li>
+                </ul>
+                @*<div class="extra-menu d-none d-lg-block pl-4">
+                        <a href="@Url.Action("Index", "Account")" class="btn btn-secondary">
+                            Login
+                        </a>
+                    </div>*@
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section id="home" class="bg-gray-100 overflow-hidden">
+        <div class="container position-relative">
+            <div class="row align-items-center py-10" style="min-height: 92vh;">
+                <div class="col-lg-6 pr-xl-10 my-3 mt-2">
+                    <label class="bg-secondary px-3 py-1 text-white rounded-3 mb-3">Best Platform for Note Sharing</label>
+                    <h2 class="display-4 mb-4">Notepad Global Platform is FREE now.</h2>
+                    <p class="lead">
+                        This is SaaS platform for your Norepad sharing. You can create your own notepad and share with your unlimited team memberes 
+                    </p>
+                    <div class="pt-2">
+                        @using (Html.BeginForm("Start", "Note", FormMethod.Post))
+                        {
+                            <div class="input-group mb-3">
+                                <input type="text" name="Note" required class="form-control" placeholder="Enter note code or link"
+                                       aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">Start Now</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img class="max-width-120" src="~/static/img/home-5-b1.svg" title="" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

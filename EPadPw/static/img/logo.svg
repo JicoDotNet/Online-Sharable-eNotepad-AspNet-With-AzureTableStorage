@@ -1,0 +1,16 @@
+<svg width="151" height="40" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+ <g>
+  <title>background</title>
+  <rect fill="#f1f6fd" id="canvas_background" height="42" width="153" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <text stroke="#000" transform="matrix(1.325628019310443,0,0,0.9629951119422913,0.08991575241088867,-0.3047121251001954) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="41" id="svg_1" y="35.32553" x="-0.27132" stroke-width="0" fill="#0033cc">T</text>
+  <text font-weight="bold" stroke="#000" transform="matrix(0.9051167950154593,0,0,0.636077510370793,3.847668245102298,11.288812910181049) " xml:space="preserve" text-anchor="start" font-family="'Simonetta', serif" font-size="37" id="svg_2" y="30.99777" x="21.64416" stroke-width="0" fill="#000000">otsol Pad</text>
+ </g>
+</svg>
