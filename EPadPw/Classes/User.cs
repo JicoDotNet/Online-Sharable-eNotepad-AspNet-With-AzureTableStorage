@@ -1,4 +1,4 @@
-﻿using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.WindowsAzure.Storage.Table;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace EPadPw.Classes
         public string Email { get; set; }
         public string Mobile { get; set; }
         public string Details { get; set; }
-        public string PasswordText { get; set; }
+        public string Password { get; set; }
 
         public bool IsActive { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,7 +27,7 @@ namespace EPadPw.Controllers
                 " and IsActive eq true").FirstOrDefault();
             if(u != null)
             {
-                if(u.PasswordText == user.PasswordText)
+                if(u.Password == user.Password)
                 {
                     Session.Add("SessionValue", u);
                     Session.Timeout = 60;
