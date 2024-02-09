@@ -1,4 +1,4 @@
-﻿@using EPadPw.Classes
+@using EPadPw.Classes
 @model List<Notepad>
 @{
     ViewBag.Title = "Index";
@@ -27,9 +27,9 @@
                             FormMethod.Post, new { autocomplete = "off" }))
                         {
                             <div class="form-group row">
-                                <label class="col-sm-1 col-form-label">Subject</label>
+                                <label class="col-sm-1 col-form-label">Note Title</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="Subject" required placeholder="Subject name" value="">
+                                    <input type="text" class="form-control" name="Subject" required placeholder="Subject/Tile name" value="">
                                 </div>
                                 <div class="col-sm-6">
                                     <button type="submit" class="btn btn-outline-success">Add New Entry</button>
@@ -44,7 +44,7 @@
                                     <thead>
                                         <tr>
                                             <th>Action</th>
-                                            <th>Subject</th>
+                                            <th>Note Title</th>
                                         </tr>
                                     </thead>
                                     <tbody>
