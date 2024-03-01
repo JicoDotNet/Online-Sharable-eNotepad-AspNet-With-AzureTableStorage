@@ -32,7 +32,7 @@ namespace EPadPw.Controllers
                 notepad.UserId = user.RowKey;
                 notepad.RowKey = GenericLogic.TimeStamp(GenericLogic.IstNow).ToString("X");
 
-                notepad.NotePath = UploadNote("<p>put your text here</p>", notepad.RowKey);
+                notepad.NotePath = UploadNote("write your note here", notepad.RowKey);
                 notepad.FilesPath = UploadFile("[]", notepad.RowKey);
 
                 ExecuteTableManager tableManager = new ExecuteTableManager("notepad", DBConnect.NoSqlConnection);
