@@ -5,29 +5,14 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>ENotepad Login</title>
     <!-- CSS Template -->
-    <link href="~/static/css/style.css" rel="stylesheet">
+    <link href="~/static/css/style.css" rel="stylesheet" />
 </head>
 <body>
-    <!-- Skippy -->
-    <a id="skippy" class="sr-only sr-only-focusable u-skippy" href="#content">
-        <div class="container">
-            <span class="u-skiplink-text">Skip to main content</span>
-        </div>
-    </a>
-    <!-- End Skippy -->
-    <!-- Preload -->
-    <div id="loading" class="preloader">
-        <div class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-    <!-- End Preload -->
-
     <main>
         <section class="bg-cover bg-no-repeat" style="background-image: url(/static/img/bg-2.jpg);">
             <div class="container">
@@ -39,7 +24,7 @@
                                 <div class="pb-4 text-center">
                                     <h3 class="mb-2">Login</h3>
                                     <p>Sign in to your account to continue.</p>
-                                    @if(ViewBag.Msg != null)
+                                    @if (ViewBag.Msg != null)
                                     {
                                         <p class="text-danger">@ViewBag.Msg</p>
                                     }
@@ -68,23 +53,11 @@
     </main>
     <!-- End Main -->
     <!-- jquery -->
-    <script src="~/static/js/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- appear -->
-    <script src="~/static/vendor/appear/jquery.appear.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.appear/0.4.1/jquery.appear.min.js"></script>
     <!--bootstrap-->
-    <script src="~/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- countTo -->
-    <script src="~/static/vendor/counter/jquery.countTo.js"></script>
-    <!-- typed -->
-    <script src="~/static/vendor/typed/typed.js"></script>
-    <!-- owl-carousel -->
-    <script src="~/static/vendor/owl-carousel/js/owl.carousel.min.js"></script>
-    <!-- magnific -->
-    <script src="~/static/vendor/magnific/jquery.magnific-popup.min.js"></script>
-    <!-- isotope -->
-    <script src="~/static/vendor/isotope/isotope.pkgd.min.js"></script>
-    <!-- jarallax -->
-    <script src="~/static/vendor/jarallax/jarallax-all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
     <!-- Theme Js -->
     <script src="~/static/js/custom.js"></script>
 </body>
