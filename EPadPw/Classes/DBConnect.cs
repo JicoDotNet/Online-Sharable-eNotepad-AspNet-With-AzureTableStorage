@@ -18,7 +18,7 @@ namespace EPadPw.Classes
         /// <summary>
         /// Gets the connection string for the NoSqlConnection.
         /// </summary>
-        public static string NoSqlConnection { get; }
+        public static object NoSqlConnection { get; }
 
         // Static constructor to initialize the static property
         static DBConnect()
