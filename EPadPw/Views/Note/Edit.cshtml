@@ -1,4 +1,4 @@
-﻿@using EPadPw.Classes
+﻿@using EPadPw.Models
 @model Notepad
 @{
     ViewBag.Title = "Entry";
@@ -34,7 +34,7 @@
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-md-12">
-                                <div data-note="header" class="callout callout-warning">
+                                <div data-note="header" class="callout callout-warning" style="border-left-width: 11px;">
                                     <h5>You can display your note!</h5>
                                     <span class="float-right d-none">
                                         <a href="@Url.Action("Requested", "Notepad", new { id = Model.RowKey })" class="card-link">
@@ -48,7 +48,8 @@
                                            class="card-link">@Model.RowKey<i class="fas fa-external-link-alt pl-2"></i></a>
                                     </p>
                                     <p>
-                                        Note Code: @Model.RowKey<i class="far fa-clone pl-2"></i>
+                                        Note Code: <span>@Model.RowKey</span>
+                                        <span> <i class="far fa-clone pl-2 cursor-pointer"></i></span>
                                     </p>
                                 </div>
                             </div>
@@ -89,7 +90,7 @@
                                                     <label for="exampleInputFile">Attach file (max: 22 files)</label>
                                                     <input type="text" maxlength="32" name="FileDetails" required class="form-control"
                                                            placeholder="File Details (32 char)" />
-													<input type="file" required name="FilePath" class="form-control" />
+                                                    <input type="file" required name="FilePath" class="form-control" />
                                                     <input type="hidden" name="PartitionKey" value="@Model.PartitionKey" />
                                                     <input type="hidden" name="RowKey" value="@Model.RowKey" />
                                                     <button type="submit" class="btn btn-success float-right">Upload</button>

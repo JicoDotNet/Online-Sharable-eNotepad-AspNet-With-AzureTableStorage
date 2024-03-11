@@ -20,7 +20,7 @@ namespace EPadPw.Classes
         static DBConnect()
         {
             // Retrieve connection string from web configuration
-            NoSqlConnection = WebConfigurationManager.AppSettings["NoSqlConnection"];
+            NoSqlConnection = WebConfigurationManager.ConnectionStrings["AzureStorageConnection"];
         }
     }
 }

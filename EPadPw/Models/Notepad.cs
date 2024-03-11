@@ -1,10 +1,8 @@
-﻿using Microsoft.WindowsAzure.Storage.Table;
-using System;
+﻿using EPadPw.Models;
+using Microsoft.WindowsAzure.Storage.Table;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace EPadPw.Classes
+namespace EPadPw.Models
 {
     public class Notepad : TableEntity
     {
@@ -18,12 +16,5 @@ namespace EPadPw.Classes
         public List<NoteFile> _Files { get; set; }
 
         public User _User { get; set; }
-    }
-
-    public class NoteFile
-    {
-        public string FileName { get; set; }
-        public string FilePath { get; set; }
-        public string FileDetails { get; set; }
     }
 }
