@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EPadPw.Classes;
+using EPadPw.Models;
 
 namespace EPadPw.Controllers
 {
@@ -24,8 +25,15 @@ namespace EPadPw.Controllers
             Notepad notepad = tableManager.RetrieveEntity<Notepad>("IsActive eq true and RowKey eq '" + id + "'").FirstOrDefault();
             if (notepad != null)
             {
+
                 tableManager = new ExecuteTableManager("User", DBConnect.NoSqlConnection);
-                notepad._User = tableManager.RetrieveEntity<User>("RowKey eq '" + notepad.PartitionKey + "'").FirstOrDefault();
+                notepad._User = new User
+                {
+                    Email = WebConfigAppSettingsAccess.UserEmail,
+                    FullName = WebConfigAppSettingsAccess.UserFullName,
+                    RowKey = WebConfigAppSettingsAccess.UserEmail,
+                    IsActive = true
+                };
 
                 notepad.Note = string.Empty;
                 notepad._Files = new List<NoteFile>();

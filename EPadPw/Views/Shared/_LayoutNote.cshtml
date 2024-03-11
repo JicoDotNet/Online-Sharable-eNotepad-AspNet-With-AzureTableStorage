@@ -25,7 +25,7 @@
                     <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                         <li class="nav-item dropdown user-menu">
                             <a href="@Url.Action("Logout", "Account")" class="nav-link">
-                                <span class="d-none d-md-inline">@(((EPadPw.Classes.User)Session["SessionValue"]).FullName)</span>
+                                <span class="d-none d-md-inline">@(((EPadPw.Models.User)Session["SessionValue"]).FullName)</span>
                                 <i class="ml-1 fas fa-power-off"></i>
                             </a>
                         </li>

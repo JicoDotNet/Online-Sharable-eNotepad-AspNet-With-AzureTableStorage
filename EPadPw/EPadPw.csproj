@@ -126,9 +126,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Classes\DBConnect.cs" />
     <Compile Include="Classes\GenericLogic.cs" />
-    <Compile Include="Classes\Notepad.cs" />
+    <Compile Include="Models\NoteFile.cs" />
+    <Compile Include="Models\Notepad.cs" />
     <Compile Include="Classes\SessionAuthenticate.cs" />
-    <Compile Include="Classes\User.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Classes\WebConfigAppSettingsAccess.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoteController.cs" />
@@ -159,7 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

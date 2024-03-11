@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EPadPw.Classes;
+using EPadPw.Models;
 
 namespace EPadPw.Controllers
 {
