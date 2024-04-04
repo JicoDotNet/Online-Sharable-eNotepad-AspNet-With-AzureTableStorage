@@ -151,7 +151,6 @@
     <Content Include="Views\Note\Pad.cshtml" />
     <Content Include="Views\Shared\_LayoutMain.cshtml" />
     <Content Include="Views\Shared\_LayoutNote.cshtml" />
-    <Content Include="Views\Shared\_PartialNoteAd.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
