@@ -1,8 +1,8 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using EPadPw.Models;
+using Newtonsoft.Json;
 using System.Web.Routing;
 
-namespace EPadPw
+namespace System.Web.Mvc
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = false)]
     public class SessionAuthenticate : ActionFilterAttribute
@@ -18,32 +18,29 @@ namespace EPadPw
                     };
             try
             {
-                // If session exists
-                if (filterContext.HttpContext.Session != null)
+                HttpCookie cookie = filterContext.RequestContext.HttpContext.Request.Cookies["Credential"];
+                if (cookie != null)
                 {
-                    //Login Session Check
-                    if (filterContext.HttpContext.Session["SessionValue"] != null)
+                    try
                     {
+                        JsonConvert.DeserializeObject<User>(cookie.Value);
                         base.OnActionExecuting(filterContext);
+                        return;
                     }
-                    else
+                    catch
                     {
                         filterContext.Result =
-                            new RedirectToRouteResult(LogoutRouteObj);
+                        new RedirectToRouteResult(LogoutRouteObj);
                         return;
                     }
                 }
-                else
-                {
-                    //otherwise continue with action
-                    base.OnActionExecuting(filterContext);
-                }
+                filterContext.Result = new RedirectToRouteResult(LogoutRouteObj);
+                return;
             }
             catch (Exception e)
             {
                 LogoutRouteObj.Add("Ex", e);
-                filterContext.Result =
-                            new RedirectToRouteResult(LogoutRouteObj);
+                filterContext.Result = new RedirectToRouteResult(LogoutRouteObj);
                 return;
             }
         }

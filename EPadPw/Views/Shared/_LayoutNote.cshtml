@@ -20,17 +20,9 @@
                 <a href="javascript: void(0);" class="navbar-brand">
                     <img src="~/static/img/logo.png" alt="EPad.pw Logo" class="brand-image">
                 </a>
-                @if (Session["SessionValue"] != null)
-                {
-                    <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-                        <li class="nav-item dropdown user-menu">
-                            <a href="@Url.Action("Logout", "Account")" class="nav-link">
-                                <span class="d-none d-md-inline">@(((EPadPw.Models.User)Session["SessionValue"]).FullName)</span>
-                                <i class="ml-1 fas fa-power-off"></i>
-                            </a>
-                        </li>
-                    </ul>
-                }
+
+                @Html.Action("PartialUserBind", "Account")
+
             </div>
         </nav>
         <div class="content-wrapper">

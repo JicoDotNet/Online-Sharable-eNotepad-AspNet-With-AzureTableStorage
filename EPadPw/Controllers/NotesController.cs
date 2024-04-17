@@ -5,19 +5,18 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using EPadPw.Classes;
+using EPadPw.Logic;
 using EPadPw.Models;
 
 namespace EPadPw.Controllers
 {
-    public class NotesController : Controller
+    public class NotesController : BaseController
     {
         [SessionAuthenticate]
         public ActionResult Index()
         {
-            User user = (User)Session["SessionValue"];
             ExecuteTableManager tableManager = new ExecuteTableManager("notepad", DBConnect.NoSqlConnection);
-            List<Notepad> notepads = tableManager.RetrieveEntity<Notepad>("PartitionKey eq '" + user.RowKey + "' and IsActive eq true");
+            List<Notepad> notepads = tableManager.RetrieveEntity<Notepad>("PartitionKey eq '" + Credential.RowKey + "' and IsActive eq true");
             return View(notepads);
         }
 
@@ -27,10 +26,8 @@ namespace EPadPw.Controllers
         {
             if (!string.IsNullOrEmpty(notepad.Subject))
             {
-                User user = (User)Session["SessionValue"];
-
-                notepad.PartitionKey = user.RowKey;
-                notepad.UserId = user.RowKey;
+                notepad.PartitionKey = Credential.RowKey;
+                notepad.UserId = Credential.RowKey;
                 notepad.RowKey = GenericLogic.TimeStamp(GenericLogic.IstNow).ToString("X");
 
                 notepad.NotePath = UploadNote("write your note here", notepad.RowKey);
@@ -47,16 +44,15 @@ namespace EPadPw.Controllers
         [SessionAuthenticate]
         public ActionResult Delete(string id)
         {
-            User user = (User)Session["SessionValue"];
-
             ExecuteTableManager tableManager = new ExecuteTableManager("notepad", DBConnect.NoSqlConnection);
-            Notepad notepad = tableManager.RetrieveEntity<Notepad>("PartitionKey eq '" + user.RowKey
+            Notepad notepad = tableManager.RetrieveEntity<Notepad>("PartitionKey eq '" + Credential.RowKey
                     + "' and IsActive eq true and RowKey eq '" + id + "'").FirstOrDefault();
             notepad.IsActive = false;
             tableManager.InsertEntity(notepad, false);
             return RedirectToAction("Index");
         }
 
+        [SessionAuthenticate]
         public string UploadNote(string val, string RowKey)
         {
             try
@@ -77,12 +73,13 @@ namespace EPadPw.Controllers
 
                 return "/Note/" + RowKey + ".txt";
             }
-            catch (Exception ex)
+            catch
             {
                 return "/Note/" + RowKey + ".txt";
             }
         }
 
+        [SessionAuthenticate]
         public string UploadFile(string val, string RowKey)
         {
             try
@@ -103,12 +100,13 @@ namespace EPadPw.Controllers
 
                 return "/File/" + RowKey + ".json";
             }
-            catch (Exception ex)
+            catch
             {
                 return "/File/" + RowKey + ".json";
             }
         }
 
+        [SessionAuthenticate]
         public string ReadFile(string VirtualPath)
         {
             //VirtualPath = "http://localhost:49312/" + "~/" + VirtualPath;
@@ -116,7 +114,7 @@ namespace EPadPw.Controllers
             {
                 return System.IO.File.ReadAllText(Server.MapPath("~/" + VirtualPath));
             }
-            catch (Exception ex)
+            catch
             {
                 return "[]";
             }
