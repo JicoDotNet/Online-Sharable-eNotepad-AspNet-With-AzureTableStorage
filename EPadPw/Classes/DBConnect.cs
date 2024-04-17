@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 
-namespace EPadPw.Classes
+namespace EPadPw.Logic
 {
     /// <summary>
     /// Provides access to database connection settings.

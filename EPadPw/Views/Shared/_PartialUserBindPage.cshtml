@@ -1,0 +1,14 @@
+﻿@using EPadPw.Models
+@model User
+
+@if (Model != null && Model.FullName != null)
+{
+    <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+        <li class="nav-item dropdown user-menu">
+            <a href="@Url.Action("Logout", "Account")" class="nav-link">
+                <span class="d-none d-md-inline">@Model.FullName</span>
+                <i class="ml-1 fas fa-power-off"></i>
+            </a>
+        </li>
+    </ul>
+}

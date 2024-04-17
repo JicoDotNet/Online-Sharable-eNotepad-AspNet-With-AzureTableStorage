@@ -6,16 +6,24 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using EPadPw.Classes;
+using EPadPw.Logic;
 using EPadPw.Models;
 
 namespace EPadPw.Controllers
 {
-    public class NoteController : Controller
+    public class NoteController : BaseController
     {
         [HttpPost]
         public ActionResult Start(string Note)
         {
+            if (Note.Contains('/'))
+            {
+                string[] Urls = Note.Split('/');
+                if (Urls.Length > 0)
+                {
+                    Note = Urls[Urls.Length - 1];
+                }                
+            }
             return RedirectToAction("Pad", "Note", new { id = Note });
         }
 
@@ -25,8 +33,6 @@ namespace EPadPw.Controllers
             Notepad notepad = tableManager.RetrieveEntity<Notepad>("IsActive eq true and RowKey eq '" + id + "'").FirstOrDefault();
             if (notepad != null)
             {
-
-                tableManager = new ExecuteTableManager("User", DBConnect.NoSqlConnection);
                 notepad._User = new User
                 {
                     Email = WebConfigAppSettingsAccess.UserEmail,
@@ -48,10 +54,8 @@ namespace EPadPw.Controllers
         {
             if (!string.IsNullOrEmpty(id))
             {
-                User user = (User)Session["SessionValue"];
-
                 ExecuteTableManager tableManager = new ExecuteTableManager("notepad", DBConnect.NoSqlConnection);
-                Notepad notepad = tableManager.RetrieveEntity<Notepad>("PartitionKey eq '" + user.RowKey
+                Notepad notepad = tableManager.RetrieveEntity<Notepad>("PartitionKey eq '" + Credential.RowKey
                     + "' and IsActive eq true and RowKey eq '" + id + "'").FirstOrDefault();
                 if (notepad != null)
                 {
@@ -99,7 +103,7 @@ namespace EPadPw.Controllers
 
                 return RedirectToAction("Edit", new { id = RowKey });
             }
-            catch (Exception ex)
+            catch
             {
                 return RedirectToAction("Index", "Notes");
             }
@@ -124,7 +128,7 @@ namespace EPadPw.Controllers
 
                 return RedirectToAction("Edit", new { id = RowKey });
             }
-            catch (Exception ex)
+            catch
             {
                 return RedirectToAction("Index", "Notes");
             }

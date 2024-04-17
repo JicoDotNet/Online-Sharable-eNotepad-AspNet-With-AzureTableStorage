@@ -126,9 +126,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Classes\DBConnect.cs" />
     <Compile Include="Classes\GenericLogic.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Models\NoteFile.cs" />
     <Compile Include="Models\Notepad.cs" />
-    <Compile Include="Classes\SessionAuthenticate.cs" />
+    <Compile Include="Controllers\SessionAuthenticate.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Classes\WebConfigAppSettingsAccess.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -151,6 +152,7 @@
     <Content Include="Views\Note\Pad.cshtml" />
     <Content Include="Views\Shared\_LayoutMain.cshtml" />
     <Content Include="Views\Shared\_LayoutNote.cshtml" />
+    <Content Include="Views\Shared\_PartialUserBindPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -160,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
