@@ -31,7 +31,7 @@ List and describe the main features of the project. This helps users understand 
 ## Usage
 Provide examples or instructions on how to use the project. This could include code snippets, command-line examples, or screenshots.
 
-![image](https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage/assets/54305438/3f4cc1dc-003a-4e22-8ea1-8793437ca5b9)
+![img1](https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage/assets/54305438/40682f6a-8ae9-4771-a836-1a4e48e5736a)
 
 ## Demo 
 - URL - https://e-notepad-dotnet48.azurewebsites.net/
