@@ -71,14 +71,38 @@ Notes about how to deploy this on a live system.
 Need to add here how to get connection string of AZ Table Storage
 
 ## Authors and Acknowledgment
-- **Soubhik Nandy** - _Initial work_ - [JicoDotNet](https://github.com/JicoDotNet)
+- **Soubhik Nandy** - _Initial work_ - [@JicoDotNet](https://github.com/JicoDotNet) - Code Owner
 - See also the list of [contributors](#contributors) who participated in this project.
 
 ### Contributors
-- **Tuhin Paul** - _Architecture_ - [Tuhin](#)
+- **Debasish Sahoo** - _Architecture_ [@debasishsahoo](https://github.com/debasishsahoo)
+- **Tuhin Paul** - _Code Review_ - [@codewithtuhin](https://github.com/codewithtuhin)
+
 
 ## Contributing
-Explain how others can contribute to the project. This may include guidelines for submitting bug reports, feature requests, or pull requests.
+This project is a collaborative effort that can involve various forms of participation. Here’s a guide on how you can contribute:
+
+**Submitting Bug Reports**
+- **Identify the Bug:** Clearly describe the issue you’ve encountered. Include details such as the context in which the bug occurred, steps to reproduce it, and the expected vs. actual results.
+- **Check Existing Issues:** Before submitting a new bug report, search the project’s issues to ensure it hasn’t been reported already.
+- **Use the Template:** Follow any issue template provided by the project. This often includes specific details the maintainers need.
+- **Include Logs and Screenshots:** If applicable, add logs and screenshots to help maintainers understand the problem.
+
+**Feature Requests**
+- **Suggesting Enhancements**: Propose new features or improvements to existing ones. Explain the benefits and potential impact on the project.
+- **Discuss in Issues:** Use the project’s issues section to discuss ideas with maintainers and other contributors.
+- **Be Patient:** Remember that maintainers are often volunteers. It may take time for them to respond to your request.
+
+**Pull Requests**
+- **Fork the Repository:** Create your own copy of the project to work on.
+- **Create a Branch:** Make a new branch in your fork for your changes.
+- **Make Changes:** Implement your bug fix or feature, adhering to the project's coding standards.
+- **Write Tests:** If the project has tests, add tests for your changes to ensure they work as expected.
+- **Pull Request:** Submit a pull request to the original repository. Fill in the provided PR template with details of your changes.
+- **Code Review:** Be open to feedback and make requested changes during the code review process.
+
+Remember to always read the project’s CONTRIBUTING.md file, as it will contain specific guidelines tailored to the project’s needs. You are open to contributing. 
+Happy contributing! 🚀
 
 ## Versioning & Change log
 We use SemVer for versioning. For the versions available, see the [tags on this repository](https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage).
