@@ -16,7 +16,7 @@
 - [Authors and Acknowledgment](#authors-and-acknowledgment)
   - [Contributors](#contributors)
 - [Contributing](#contributing)
-- [Versioning](#versioning)
+- [Versioning & Change log](#versioning--change-log)
 - [License](#license)
 - [Contact](#contact)
 - [Project Status](#project-status)
@@ -79,7 +79,7 @@ Need to add here how to get connection string of AZ Table Storage
 ## Contributing
 Explain how others can contribute to the project. This may include guidelines for submitting bug reports, feature requests, or pull requests.
 
-## Versioning
+## Versioning & Change log
 We use SemVer for versioning. For the versions available, see the [tags on this repository](https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage).
 
 ## License
