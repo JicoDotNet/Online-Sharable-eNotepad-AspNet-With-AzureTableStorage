@@ -43,7 +43,7 @@ Provide examples or instructions on how to use the project. This could include c
 ## Getting Started
 Let's start with development & deployment at your own system & server.
 ### Prerequisites
-What things you need to install the software and how to install them.
+Below things you need to install.
 -  Windows 10 or 11 with [Visual Studio 2022](https://visualstudio.microsoft.com/vs/community) >= v.17.9.* `community edition`
 - [.NET Framework 4.8](https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net48-developer-pack-offline-installer) SDK `dev` `build`
 - Azure Portal Account (https://portal.azure.com/)
