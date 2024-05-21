@@ -41,7 +41,9 @@ Provide examples or instructions on how to use the project. This could include c
 > This OTP authentication is only demo purpose. ✨
 
 ## Getting Started
-Let's start with development & deployment at your own system & server.
+Let's start with development & deployment at your own system & server. 
+> _It required some software development knowledge._
+
 ### Prerequisites
 Below things you need to install.
 -  Windows 10 or 11 with [Visual Studio 2022](https://visualstudio.microsoft.com/vs/community) >= v.17.9.* `community edition`
