@@ -84,10 +84,12 @@ We use SemVer for versioning. For the versions available, see the [tags on this 
 
 ## License
 This project is licensed under the MIT License - see the [`LICENSE`](https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage/blob/master/LICENSE) file for details.
-- [MIT License](https://choosealicense.com/licenses/mit/)
+- [MIT License Details](https://choosealicense.com/licenses/mit/)
 
 ## Contact
-Contact information for the project maintainers.
+Anyone can contact us regarding this project.
+> Email: `github.connect@soubhiknandy.com`
 
 ## Project Status
-The project is currently in the alpha stage; active development is in progress.
+The project is currently in the `alpha` stage; active development is in progress.
+> This project was built and developed in 2021. In January 2024 it is migrated from Azure DevOps to Github.
