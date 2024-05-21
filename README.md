@@ -17,6 +17,7 @@
   - [Contributors](#contributors)
 - [Contributing](#contributing)
 - [Versioning & Change log](#versioning--change-log)
+  - [V1.0](#v10)
 - [License](#license)
 - [Contact](#contact)
 - [Project Status](#project-status)
@@ -81,6 +82,19 @@ Explain how others can contribute to the project. This may include guidelines fo
 
 ## Versioning & Change log
 We use SemVer for versioning. For the versions available, see the [tags on this repository](https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage).
+
+### V1.0
+##### New/Changed/Removed features
+Initial implementation of this app
+##### Features
+- Login Page
+- Note edit and add page
+- Note record page
+- Note display page
+- File sharing with a note
+
+##### Maintenance/Miscellaneous
+N/A
 
 ## License
 This project is licensed under the MIT License - see the [`LICENSE`](https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage/blob/master/LICENSE) file for details.
