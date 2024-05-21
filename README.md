@@ -88,8 +88,8 @@ We use SemVer for versioning. For the versions available, see the [tags on this 
 Initial implementation of this app
 ##### Features
 - Login Page
-- Note edit and add page
-- Note record page
+- Note edit page
+- Notes record page
 - Note display page
 - File sharing with a note
 
