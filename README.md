@@ -65,7 +65,20 @@ A step-by-step series of examples that tell you how to get a development environ
 5. Run the application.
 
 ### Deployment
-Notes about how to deploy this on a live system.
+You can deploy this project on any Windows based server.
+
+**Deployment requirements**
+``` text
+1. Windows OS
+2. IIS Server
+3. .NET Framework 4.8
+4. Azure Table Storage Connection String
+```
+
+**Steps to Deploy →**
+- Change `Web.config` file with
+  - Connection String of Azure Table Storage
+  - Login Credentials
 
 #### Azure Table Storage 
 Azure Table Storage is a cloud-based service that stores structured NoSQL data, providing a key/attribute store with a schematic design. It’s part of the Microsoft Azure cloud platform and allows for the storage of large amounts of non-relational data.
