@@ -68,7 +68,21 @@ A step-by-step series of examples that tell you how to get a development environ
 Notes about how to deploy this on a live system.
 
 #### Azure Table Storage 
-Need to add here how to get connection string of AZ Table Storage
+Azure Table Storage is a cloud-based service that stores structured NoSQL data, providing a key/attribute store with a schematic design. It’s part of the Microsoft Azure cloud platform and allows for the storage of large amounts of non-relational data.
+Azure Table Storage is ideal for storing datasets that do not require complex joins or foreign keys, such as user data for web applications, address books, and device information.
+
+_Generate the connection string of **Azure Table Storage** from [Azure Portal](https://portal.azure.com)._
+
+> To generate an Azure Table Storage connection string from the Azure Portal, follow these steps:
+ 1. Navigate to your **storage account** in the Azure Portal.
+ 2. In the **Security + networking** section, locate the Access keys setting.
+ 3. Click on the **Show keys** button at the top of the page to display the account keys and associated connection strings.
+ 4. Copy the **Connection string** provided there.
+
+**The Connection String looks like this:**
+``` xml
+DefaultEndpointsProtocol=https;AccountName=[yourAccountName];AccountKey=[yourAccountKey]
+```
 
 ## Authors and Acknowledgment
 - **Soubhik Nandy** - _Initial work_ - [@JicoDotNet](https://github.com/JicoDotNet) - Code Owner
