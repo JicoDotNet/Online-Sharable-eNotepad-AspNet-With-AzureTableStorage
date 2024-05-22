@@ -8,7 +8,7 @@
   - [Benefits](#benefits)
 - [Usage](#usage)
 - [Demo](#demo)
-- [Getting Started](https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage/blob/master/source/README.md#getting-started)
+- [Getting Started](/blob/master/source/README.md)
   - [Prerequisites](https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage/blob/master/source/README.md#prerequisites)
   - [Tech Stack](https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage/blob/master/source/README.md#tech-stack)
   - [Installation](#installation)
