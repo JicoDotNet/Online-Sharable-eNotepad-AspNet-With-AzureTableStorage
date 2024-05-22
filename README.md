@@ -11,7 +11,7 @@
 - [Getting Started](/source/README.md)
   - [Prerequisites](/source/README.md#prerequisites)
   - [Tech Stack](/source/README.md#tech-stack)
-  - [Installation](/source/README.md)
+  - [Installation](/source/README.md#installation)
   - [Deployment](/source/README.md#deployment)
     - [Azure Table Storage](/source/README.md#azure-table-storage)
 - [Authors and Acknowledgment](#authors-and-acknowledgment)
