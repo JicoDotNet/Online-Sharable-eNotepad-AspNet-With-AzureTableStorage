@@ -47,7 +47,7 @@ Using this online sharable notepad has some benefits.
 ## Usage
 Provide examples or instructions on how to use the project. This could include code snippets, command-line examples, or screenshots.
 
-![img1](https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage/assets/54305438/40682f6a-8ae9-4771-a836-1a4e48e5736a)
+![img1](https://github.com/JicoDotNet/Online-Sharable-eNotepad-AspNet-With-AzureTableStorage/assets/54305438/40682f6a-8ae9-4771-a836-1a4e48e5736a)
 
 ## Demo 
 - URL - https://e-notepad-dotnet48.azurewebsites.net/
