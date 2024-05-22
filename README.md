@@ -56,7 +56,7 @@ Provide examples or instructions on how to use the project. This could include c
 > This OTP authentication is only demo purpose. ✨
 
 ## Getting Started
-How to setup, build and deploy this application, you have to read [source/README.md](https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage/blob/master/source/README.md)
+How to setup, build and deploy this application, you have to read [source/README.md](/source/README.md)
 
 ## Authors and Acknowledgment
 - **Soubhik Nandy** - _Initial work_ - [@JicoDotNet](https://github.com/JicoDotNet) - Code Owner
@@ -89,11 +89,11 @@ This project is a collaborative effort that can involve various forms of partici
 - **Pull Request:** Submit a pull request to the original repository. Fill in the provided PR template with details of your changes.
 - **Code Review:** Be open to feedback and make requested changes during the code review process.
 
-Remember to always read the project’s [CONTRIBUTING.md](https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage/blob/master/CONTRIBUTING.md) file, as it will contain specific guidelines tailored to the project’s needs. You are open to contributing. 
+Remember to always read the project’s [CONTRIBUTING.md](/CONTRIBUTING.md) file, as it will contain specific guidelines tailored to the project’s needs. You are open to contributing. 
 Happy contributing! 🚀
 
 ## Versioning & Change log
-We use SemVer for versioning. For the versions available, see the [tags on this repository](https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage).
+We use SemVer for versioning. For the versions available, see the [tags on this repository](https://github.com/JicoDotNet/Online-Sharable-eNotepad-AspNet-With-AzureTableStorage).
 
 ### V1.0
 ##### New/Changed/Removed features
@@ -109,7 +109,7 @@ Initial implementation of this app
 N/A
 
 ## License
-This project is licensed under the MIT License - see the [`LICENSE`](https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage/blob/master/LICENSE) file for details.
+This project is licensed under the MIT License - see the [`LICENSE`](/LICENSE) file for details.
 - [MIT License Details](https://choosealicense.com/licenses/mit/)
 
 ## Contact
