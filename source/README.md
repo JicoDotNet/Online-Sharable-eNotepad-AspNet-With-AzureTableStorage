@@ -20,8 +20,8 @@ Below things you need to install.
 A step-by-step series of examples that tell you how to get a development environment running.
 
 1. Get the project
-    - Clone the repository using `git clone https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage.git`
-    - Or download the project from Github `https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage`
+    - Clone the repository using `git clone https://github.com/JicoDotNet/Online-Sharable-eNotepad-AspNet-With-AzureTableStorage.git`
+    - Or download the project from Github `https://github.com/JicoDotNet/Online-Sharable-eNotepad-AspNet-With-AzureTableStorage`
 2. Open the solution in Visual Studio.
 3. Restore the NuGet packages.
 4. Update the connection string in `web.config`
