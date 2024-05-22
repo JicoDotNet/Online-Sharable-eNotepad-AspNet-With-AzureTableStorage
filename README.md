@@ -1,5 +1,5 @@
 
-# Online Sharable Notepad
+# Online Sharable eNotepad
 **_Online Notepad_** is an open-source project that provides a web-based notepad application built using `ASP.NET` and integrated with Azure Table Storage. The goal of this project is to create a simple yet efficient online notepad tool that allows users to share notes and files among multiple viewer.
 
 ## Table of Contents
