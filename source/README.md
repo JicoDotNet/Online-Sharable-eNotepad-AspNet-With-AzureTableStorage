@@ -1,5 +1,5 @@
 
-# Online Sharable Notepad
+# Online Sharable eNotepad
 
 ## Getting Started
 Let's start with development & deployment at your own system & server. 
