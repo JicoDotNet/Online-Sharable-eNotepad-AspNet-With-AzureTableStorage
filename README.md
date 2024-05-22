@@ -89,7 +89,7 @@ This project is a collaborative effort that can involve various forms of partici
 - **Pull Request:** Submit a pull request to the original repository. Fill in the provided PR template with details of your changes.
 - **Code Review:** Be open to feedback and make requested changes during the code review process.
 
-Remember to always read the project’s CONTRIBUTING.md file, as it will contain specific guidelines tailored to the project’s needs. You are open to contributing. 
+Remember to always read the project’s [CONTRIBUTING.md](https://github.com/JicoDotNet/e-notepad-AspNet-With-AzureTableStorage/blob/master/CONTRIBUTING.md) file, as it will contain specific guidelines tailored to the project’s needs. You are open to contributing. 
 Happy contributing! 🚀
 
 ## Versioning & Change log
