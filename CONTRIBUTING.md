@@ -1,4 +1,4 @@
-# Contributing to Expense Management app
+# Contributing to Online Sharable eNotepad app
 
 👋 Welcome, and thank you for considering contributing to `e-Notepad` app. Your help is essential for keeping it great.
 
