@@ -18,6 +18,7 @@
   - [Contributors](#contributors)
 - [Contributing](#contributing)
 - [Versioning & Change log](#versioning--change-log)
+  - [V1.1](#v11)
   - [V1.0](#v10)
 - [License](#license)
 - [Contact](#contact)
@@ -94,6 +95,16 @@ Happy contributing! 🚀
 
 ## Versioning & Change log
 We use SemVer for versioning. For the versions available, see the [tags on this repository](https://github.com/JicoDotNet/Online-Sharable-eNotepad-AspNet-With-AzureTableStorage).
+
+### V1.1
+##### New/Changed/Removed features
+Customize URI manage and some bug fix
+##### Features
+- Customize Note code (uri)
+
+##### Maintenance/Miscellaneous
+- Bug fix in logic level
+- Bug fix in UI level
 
 ### V1.0
 ##### New/Changed/Removed features
