@@ -105,6 +105,7 @@ Customize URI manage and some bug fix
 ##### Maintenance/Miscellaneous
 - Bug fix in logic level
 - Bug fix in UI level
+- add MIME type
 
 ### V1.0
 ##### New/Changed/Removed features
