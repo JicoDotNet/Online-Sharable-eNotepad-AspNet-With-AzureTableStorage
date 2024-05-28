@@ -6,6 +6,7 @@ namespace EPadPw.Models
 {
     public class Notepad : TableEntity
     {
+        public string NoteUri { get; set; }
         public string NotePath { get; set; }
         public bool IsActive { get; set; }
         public string Subject { get; set; }

@@ -30,8 +30,8 @@ namespace EPadPw.Controllers
         public ActionResult Pad(string id)
         {
             ExecuteTableManager tableManager = new ExecuteTableManager("notepad", DBConnect.NoSqlConnection);
-            Notepad notepad = tableManager.RetrieveEntity<Notepad>("IsActive eq true and RowKey eq '" + id + "'").FirstOrDefault();
-            if (notepad != null)
+            Notepad notepad = tableManager.RetrieveEntity<Notepad>("RowKey eq '" + id + "' or NoteUri eq '" + id + "'").FirstOrDefault();
+            if (notepad != null && notepad.IsActive)
             {
                 notepad._User = new User
                 {
@@ -49,22 +49,31 @@ namespace EPadPw.Controllers
             return View((object)null);
         }
 
+        [HttpGet]
         [SessionAuthenticate]
         public ActionResult Edit(string id)
         {
             if (!string.IsNullOrEmpty(id))
             {
                 ExecuteTableManager tableManager = new ExecuteTableManager("notepad", DBConnect.NoSqlConnection);
-                Notepad notepad = tableManager.RetrieveEntity<Notepad>("PartitionKey eq '" + Credential.RowKey
-                    + "' and IsActive eq true and RowKey eq '" + id + "'").FirstOrDefault();
-                if (notepad != null)
+                string _query = "NoteUri eq '" + id + "' or RowKey eq '" + id + "'";
+                List<Notepad> notepads = tableManager.RetrieveEntity<Notepad>(_query);
+                if(notepads.Count() == 1)
                 {
-                    notepad.Note = Uri.UnescapeDataString(ReadFile(notepad.NotePath));
-                    notepad._Files = JsonConvert.DeserializeObject<List<NoteFile>>(ReadFile(notepad.FilesPath));
-                    return View(notepad);
+                    Notepad notepad = notepads.FirstOrDefault();
+
+                    if (notepad != null
+                    && notepad.PartitionKey == Credential.RowKey
+                    && notepad.IsActive)
+                    {
+                        notepad.Note = Uri.UnescapeDataString(ReadFile(notepad.NotePath));
+                        notepad._Files = JsonConvert.DeserializeObject<List<NoteFile>>(ReadFile(notepad.FilesPath));
+                        return View(notepad);
+                    }
                 }
+                
             }
-            return RedirectToAction("Index", "Notes");
+            return View("_ViewNoNoteFound");
         }
 
         [HttpPost]
@@ -75,6 +84,30 @@ namespace EPadPw.Controllers
             {
                 UploadNote(notepad.Note, notepad.RowKey);
                 return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult Availability(string id)
+        {
+            return Json(CheckAvailability(id), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public JsonResult UriChange(Notepad notepad)
+        {
+            if (CheckAvailability(notepad.NoteUri))
+            {
+                ExecuteTableManager tableManager = new ExecuteTableManager("notepad", DBConnect.NoSqlConnection);
+                Notepad exsistingNotepad = tableManager.RetrieveEntity<Notepad>("RowKey eq '" + notepad.RowKey + "'").FirstOrDefault();
+                if (exsistingNotepad != null)
+                {
+                    exsistingNotepad.NoteUri = notepad.NoteUri;
+                    tableManager.UpdateEntity(exsistingNotepad);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
             }
             return Json(false, JsonRequestBehavior.AllowGet);
         }
@@ -134,7 +167,7 @@ namespace EPadPw.Controllers
             }
         }
 
-        public string UploadFile(string val, string RowKey)
+        private string UploadFile(string val, string RowKey)
         {
             try
             {
@@ -146,12 +179,6 @@ namespace EPadPw.Controllers
 
                 System.IO.File.WriteAllText(path, message);
 
-                //using (StreamWriter writer = new StreamWriter(path, true))
-                //{
-                //    writer.WriteLine(message);
-                //    writer.Close();
-                //}
-
                 return "/File/" + RowKey + ".json";
             }
             catch (Exception ex)
@@ -160,20 +187,20 @@ namespace EPadPw.Controllers
             }
         }
 
-        public string ReadFile(string VirtualPath)
+        private string ReadFile(string VirtualPath)
         {
             //VirtualPath = "http://localhost:49312/" + "~/" + VirtualPath;
             try
             {
                 return System.IO.File.ReadAllText(Server.MapPath("~/" + VirtualPath));
             }
-            catch (Exception ex)
+            catch
             {
                 return "[]";
             }
         }
 
-        public string UploadNote(string val, string RowKey)
+        private string UploadNote(string val, string RowKey)
         {
             try
             {
@@ -197,6 +224,47 @@ namespace EPadPw.Controllers
             {
                 return "/Note/" + RowKey + ".txt";
             }
+        }
+
+        private bool CheckAvailability(string id)
+        {
+            try
+            {
+                if (ValidInputForNoteUri(id))
+                {
+
+                    ExecuteTableManager tableManager = new ExecuteTableManager("notepad", DBConnect.NoSqlConnection);
+                    Notepad notepad = tableManager.RetrieveEntity<Notepad>("NoteUri eq '" + id + "' or RowKey eq '" + id + "'").FirstOrDefault();
+                    if (notepad == null)
+                        return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private bool ValidInputForNoteUri(string noteUri)
+        {
+            if (noteUri is null)
+            {
+                return false;
+            }
+
+            if (noteUri.Length < 8 || noteUri.Length > 32)
+                return false;
+
+            string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-";
+
+            foreach (char c in noteUri)
+            {
+                if (!validChars.Contains(c))
+                    return false;
+            }
+
+            return true;
         }
     }
 }

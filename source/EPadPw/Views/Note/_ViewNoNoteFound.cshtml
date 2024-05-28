@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "No Note Found";
+    Layout = "~/Views/Shared/_LayoutNote.cshtml";
+}
+<section class="content-header">
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Notepad</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Note Not Found</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-danger">
+                                    <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                                    No Note found!!
+                                    <br />
+                                    You have entered wrong URL.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-12">
+                                Go back to your notes page. <a href="@Url.Action("Index", "Notes")" class="text-success">All Notes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

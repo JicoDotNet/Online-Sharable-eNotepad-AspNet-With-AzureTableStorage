@@ -153,6 +153,7 @@
     <Content Include="Views\Shared\_LayoutMain.cshtml" />
     <Content Include="Views\Shared\_LayoutNote.cshtml" />
     <Content Include="Views\Shared\_PartialUserBindPage.cshtml" />
+    <Content Include="Views\Note\_ViewNoNoteFound.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

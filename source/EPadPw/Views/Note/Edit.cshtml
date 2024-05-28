@@ -1,7 +1,7 @@
 ﻿@using EPadPw.Models
 @model Notepad
 @{
-    ViewBag.Title = "Entry";
+    ViewBag.Title = "Edit your note";
     Layout = "~/Views/Shared/_LayoutNote.cshtml";
     bool FileUploadEligable = false;
 }
@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Notepad</h1>
+                <h1>Notepad : @Model.Subject</h1>
             </div>
         </div>
     </div>
@@ -25,31 +25,31 @@
             <div class="col-md-12">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Note : @Model.RowKey</h3>
+                        <h3 class="card-title">Note on "@Model.Subject"</h3>
                         <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+                            <a  class="btn btn-tool" href="@Url.Action("Index", "Notes")">
+                                <i class="fas fa-times"></i>
+                            </a>
                         </div>
                     </div>
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-md-12">
                                 <div data-note="header" class="callout callout-warning" style="border-left-width: 11px;">
-                                    <h5>You can display your note!</h5>
                                     <span class="float-right d-none">
                                         <a href="@Url.Action("Requested", "Notepad", new { id = Model.RowKey })" class="card-link">
                                             <span class="text-primary">Requested for edit</span>
                                         </a>
                                     </span>
                                     <p class="mb-0">
-                                        Subject: @Model.Subject,
-                                        Click Here :
-                                        <a target="_blank" href="@Url.Action("Pad", "Note", new { id = Model.RowKey })"
-                                           class="card-link">@Model.RowKey<i class="fas fa-external-link-alt pl-2"></i></a>
+                                        Click here to view your note!
+                                        <a target="_blank" href="@Url.Action("Pad", "Note", new { id = Model.NoteUri })"
+                                           class="card-link">@Model.NoteUri<i class="fas fa-external-link-alt pl-2"></i></a>
                                     </p>
                                     <p>
-                                        Note Code: <span>@Model.RowKey</span>
-                                        <span> <i class="far fa-clone pl-2 cursor-pointer"></i></span>
+                                        Note Code: <b>@Model.NoteUri</b>
+                                        <!--<span style="cursor: pointer;"> <i class="far fa-clone pl-2"></i></span>-->
+                                        <span style="cursor: pointer;" data-toggle="modal" data-target="[data-modal='NoteUriEdit']"> <i class="fas fa-edit pl-2"></i></span>
                                     </p>
                                 </div>
                             </div>
@@ -127,10 +127,40 @@
         </div>
     </div>
 </section>
+
+<!-- Note Uri Edit Modal -->
+<div class="modal fade" data-modal="NoteUriEdit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Note Code</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <small class="form-text text-muted">Only alphanumaric, '-' &amp; '_' allowed. <br />Minimum 8 char max 24 char allowed</small>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" data-modal="NoteUri" placeholder="Enter Note Code" maxlength="24" value="@Model.NoteUri" />
+                    <span class="input-group-append">
+                        <button type="button" class="btn btn-info btn-flat" onclick="CheckAvailability()">Check Availability</button>
+                    </span>
+                </div>
+                <small class="form-text text-danger" data-modal="NoteUriEditAlert"></small>
+                <small class="form-text text-success" data-modal="NoteUriEditSuccess"></small>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="ChangeNoteCode()" >Change</button>
+                <a href="javascript:void(0);" class="btn btn-danger btn-sm" data-dismiss="modal">Close</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section BodyScript{
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script type="text/javascript">
-        $(function () {
+        //$(function () {
             // Summernote
             //$('.textarea').summernote({
             //    placeholder: 'Hello!! Add your note here.',
@@ -156,7 +186,7 @@
 			//$('.textarea').summernote('fontName', 'Consolas');
 			//$('.textarea').summernote('lineHeight', '0.6');
 			//$('.textarea').summernote('focus');
-        });
+        //});
         var Note = '';
         setInterval(function () { setData(); }, 3000);
         function setData() {
@@ -200,6 +230,78 @@
                     }
                 });
             }
+        }
+
+        function CheckAvailability() {
+            $('[data-modal="NoteUriEditSuccess"]').html('');
+            $('[data-modal="NoteUriEditAlert"]').html('');
+            if (!validateString($('[data-modal="NoteUri"]').val())){
+                $('[data-modal="NoteUriEditAlert"]').html('<i class="fas fa-info pl-2"></i> Please enter a valid data.');
+                return;
+            }
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("Availability", "Note", new { id = string.Empty })" + "/" + $('[data-modal="NoteUri"]').val(),
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data) {
+                    if (!data) {
+                        $('[data-modal="NoteUriEditAlert"]').html('<i class="fas fa-info pl-2"></i> Note Code is Not available');
+                    }
+                    else {
+                        $('[data-modal="NoteUriEditSuccess"]').html('<i class="fas fa-info pl-2"></i> Note Code is available');
+                    }
+                },
+                failure: function (response) {
+                    console.log(response.responseText);
+                },
+                error: function (response) {
+                    console.log(response.responseText);
+                }
+            });
+        }
+
+        function validateString(input) {
+            if (input.length < 8 || input.length > 24) {
+                return false;
+            }
+            var validChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-".split('');
+            for (const char of input) {
+                if (!validChar.includes(char)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function ChangeNoteCode() {
+            var data = {
+                "PartitionKey": "@Model.PartitionKey",
+                "RowKey": "@Model.RowKey",
+                "NoteUri": $('[data-modal="NoteUri"]').val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("UriChange", "Note")",
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data) {
+                    debugger;
+                    if (!data) {
+                        $('[data-modal="NoteUriEditAlert"]').html('<i class="fas fa-info pl-2"></i> Note Code is Not available');
+                    }
+                    else {
+                        window.location.href = "/Note/Edit/" + $('[data-modal="NoteUri"]').val();
+                    }
+                },
+                failure: function (response) {
+                    console.log(response.responseText);
+                },
+                error: function (response) {
+                    console.log(response.responseText);
+                }
+            });
         }
     </script>
 }

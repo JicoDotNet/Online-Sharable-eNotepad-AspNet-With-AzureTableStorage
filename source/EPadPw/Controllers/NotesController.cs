@@ -29,6 +29,8 @@ namespace EPadPw.Controllers
                 notepad.PartitionKey = Credential.RowKey;
                 notepad.UserId = Credential.RowKey;
                 notepad.RowKey = GenericLogic.TimeStamp(GenericLogic.IstNow).ToString("X");
+                notepad.NoteUri = notepad.RowKey;
+                notepad.Subject = notepad.Subject.Trim();
 
                 notepad.NotePath = UploadNote("write your note here", notepad.RowKey);
                 notepad.FilesPath = UploadFile("[]", notepad.RowKey);
@@ -36,7 +38,7 @@ namespace EPadPw.Controllers
                 ExecuteTableManager tableManager = new ExecuteTableManager("notepad", DBConnect.NoSqlConnection);
                 notepad.IsActive = true;
                 tableManager.InsertEntity(notepad, false);
-                return RedirectToAction("Edit", "Note", new { id = notepad.RowKey });
+                return RedirectToAction("Edit", "Note", new { id = notepad.NoteUri });
             }
             return RedirectToAction("Index");
         }

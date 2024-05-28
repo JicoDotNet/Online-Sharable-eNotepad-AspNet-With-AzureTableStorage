@@ -5,15 +5,15 @@
     ViewBag.Title = Model != null ? Model.Subject : "";
     Layout = "~/Views/Shared/_LayoutNote.cshtml";
 }
-<div class="container mt-3">
+<div class="container pt-3">
     <div class="row">
         <div class="col-12 col-md-12">
             <div class="card">
-                <div class="card-header bg-warning">
-                    Note View
-                </div>
                 @if (Model != null)
                 {
+                    <div class="card-header bg-warning">
+                        Note on <b>@Model.Subject</b>
+                    </div>
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-md-6">
@@ -58,9 +58,9 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-12" >
-								<textarea data-note="body" style="font-family: 'Consolas';height: 100vh; background-color: #ffffff;border: none;" disabled class="textarea form-control">@Html.Raw(Model.Note)</textarea>
-							</div>
+                            <div class="col-md-12">
+                                <textarea data-note="body" style="font-family: 'Consolas';height: 100vh; background-color: #ffffff;border: none;" disabled class="textarea form-control">@Html.Raw(Model.Note)</textarea>
+                            </div>
                         </div>
                     </div>
                     <div class="modal fade" id="modal-sm">
@@ -70,11 +70,11 @@
                             <div class="modal-dialog modal-sm">
                                 <div class="modal-content">
                                     <!--<div class="modal-header">
-                                        <span>Edit for request</span>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>-->
+                            <span>Edit for request</span>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>-->
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col-12">
