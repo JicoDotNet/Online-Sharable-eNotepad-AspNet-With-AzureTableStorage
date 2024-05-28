@@ -53,12 +53,12 @@
                                             <tr>
                                                 <td style="width:20%">
                                                     <a class="btn btn-primary" title="Edit Again"
-                                                       href="@Url.Action("Edit", "Note", new { id = notepad.RowKey })">
+                                                       href="@Url.Action("Edit", "Note", new { id = notepad.NoteUri })">
                                                         <i class="far fa-edit"></i>
                                                     </a>
-                                                    <a class="btn btn-warning" target="_blank" href="@Url.Action("Pad", "Note", new { id = notepad.RowKey })">
+                                                    <a class="btn btn-warning" target="_blank" title="View Note"
+                                                       href="@Url.Action("Pad", "Note", new { id = notepad.NoteUri })">
                                                         <i class="far fa-clipboard"></i>
-                                                        View
                                                     </a>
                                                     <a class="btn btn-outline-danger" title="Delete"
                                                        href="@Url.Action("Delete", "Notes", new { id = notepad.RowKey })">
