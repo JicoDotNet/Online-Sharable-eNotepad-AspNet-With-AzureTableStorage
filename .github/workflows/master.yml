@@ -1,0 +1,27 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: ENotepad CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup MSBuild path
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - name: Restore NuGet packages
+      run: nuget restore EPadPw.sln
+
+    - name: Build the project
+      run: msbuild EPadPw.sln /p:Configuration=Release /p:Platform="Any CPU"
