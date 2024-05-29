@@ -99,9 +99,10 @@ We use SemVer for versioning. For the versions available, see the [tags on this 
 
 ### V1.1
 ##### New/Changed/Removed features
-Customize URI manage and some bug fix
+Customize URI manage and some bug fix. .Net Framework version upgrade.
 ##### Features
 - Customize Note code (uri)
+- .NET Framework version upgrade to implement Github CI
 
 ##### Maintenance/Miscellaneous
 - Bug fix in logic level
