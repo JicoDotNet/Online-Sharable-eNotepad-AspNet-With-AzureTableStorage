@@ -21,7 +21,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Restore NuGet packages
-      run: nuget restore EPadPw.sln
+      run: nuget restore source/EPadPw.sln
 
     - name: Build the project
-      run: msbuild EPadPw.sln /p:Configuration=Release /p:Platform="Any CPU"
+      run: msbuild source/EPadPw.sln /p:Configuration=Release /p:Platform="Any CPU"
