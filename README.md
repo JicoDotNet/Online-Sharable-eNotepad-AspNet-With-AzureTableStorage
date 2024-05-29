@@ -37,6 +37,7 @@ An online sharable notepad is a versatile tool that can enhance productivity and
 - **Cloud-Based:** Notes are stored in the cloud, ensuring they are backed up and retrievable from anywhere.
 - **Security:** Some platforms offer password protection to keep notes private.
 - **Shareability:** Notes can be shared with others via a unique URL.
+- **Customizability:** Notes URL can be customize.
 
 ### Benefits
 Using this online sharable notepad has some benefits.
