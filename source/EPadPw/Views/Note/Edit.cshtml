@@ -1,4 +1,4 @@
-﻿@using EPadPw.Models
+@using EPadPw.Models
 @model Notepad
 @{
     ViewBag.Title = "Edit your note";
@@ -7,7 +7,8 @@
 }
 
 @section HeadCss{
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
 }
 <section class="content-header">
     <div class="container">
@@ -48,8 +49,8 @@
                                     </p>
                                     <p>
                                         Note Code: <b>@Model.NoteUri</b>
-                                        <!--<span style="cursor: pointer;"> <i class="far fa-clone pl-2"></i></span>-->
-                                        <span style="cursor: pointer;" data-toggle="modal" data-target="[data-modal='NoteUriEdit']"> <i class="fas fa-edit pl-2"></i></span>
+                                        <span style="cursor: pointer;" onclick="Copy('@Model.NoteUri')"> <i class="far fa-clone pl-2 text-success"></i></span>
+                                        <span style="cursor: pointer;" data-toggle="modal" data-target="[data-modal='NoteUriEdit']"> <i class="fas fa-edit pl-2 text-info"></i></span>
                                     </p>
                                 </div>
                             </div>
@@ -159,7 +160,12 @@
 
 @section BodyScript{
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script type="text/javascript">
+        function Copy(copyText) {
+            navigator.clipboard.writeText(window.location.origin + "/" + copyText);
+            toastr.success('Note URL has been copied successfully.');
+        }
         //$(function () {
             // Summernote
             //$('.textarea').summernote({
